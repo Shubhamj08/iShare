@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IShare</title>
+
+    <!-- script tag for bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <!-- font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700|Montserrat:300"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- link to stylesheet -->
+    <link href="style.css" type="text/css" rel="stylesheet" />
+
+    <!-- script tag for JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <div class="jumbotron mb-0 d-flex flex-row">
+      <img src="assets/ishare-logo-large.png" class="img-fluid" />
+      <div class="m-auto display-4">Share Your Ideas With Us</div>
+    </div>
+    <nav
+      class="navbar navbar-expand-sm pl-4 py-0 mt-0 d-flex justify-content-between sticky-top"
+    >
+      <ul class="navbar-nav">
+        <a class="nav-item nav-link">Link 1</a>
+        <a class="nav-item nav-link">Link 2</a>
+      </ul>
+      <img
+        class="navbar-brand"
+        src="assets/ishare-logo.png"
+        style="width: 10%; height: auto"
+      />
+      <ul class="navbar-nav">
+        <a class="nav-item nav-link">Login</a>
+        <a class="nav-item nav-link">SignUp</a>
+      </ul>
+    </nav>
+    <section
+      class="container d-flex justify-content-between my-3"
+      id="post-idea"
+    ></section>
+    <section
+      class="container d-flex flex-wrap my-5"
+      id="ideas-container"
+    ></section>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

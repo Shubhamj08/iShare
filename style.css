@@ -1,0 +1,68 @@
+body {
+  background: #ffffff;
+  font-family: "Lora", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.jumbotron,
+.navbar {
+  border-radius: 0px;
+  background: rgba(250, 181, 181, 0.8);
+}
+
+.nav-link::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  top: 90%;
+  left: 0;
+  height: 3px;
+  background: rgba(5, 74, 74, 0.8);
+  transform: scaleX(0);
+  transition: transform 0.35s ease;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.top-text {
+  font-size: 24px;
+}
+
+.nav-link {
+  position: relative;
+  padding: 10px 0;
+  display: block;
+  margin: 0 10px;
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.card {
+  border: 1px solid black;
+  border-radius: 0;
+  width: 47%;
+  height: auto;
+  margin: 5px;
+}
+
+.card-title {
+  letter-spacing: 1px;
+}
+
+.fa {
+  margin: 0 10px;
+}
