@@ -17,7 +17,7 @@ h6 {
 .jumbotron,
 .navbar {
   border-radius: 0px;
-  background: rgba(250, 181, 181, 0.8);
+  background: rgb(250, 181, 181);
 }
 
 .nav-link::after {
@@ -52,11 +52,10 @@ h6 {
 }
 
 .card {
-  border: 1px solid black;
-  border-radius: 0;
   width: 47%;
   height: auto;
   margin: 5px;
+  box-shadow: 0 2px 8px 0 rgb(129, 133, 133);
 }
 
 .card-title {
@@ -65,4 +64,18 @@ h6 {
 
 .fa {
   margin: 0 10px;
+}
+
+.form-group {
+  border: 1px solid teal;
+  background: rgba(228, 166, 182, 0.4);
+}
+
+.btn {
+  background: blueviolet !important;
+  border-radius: 0;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  color: aliceblue;
+  box-shadow: 2px 4px 2px 0 rgba(5, 74, 74, 0.8);
 }
