@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const ideas = require("./routes/ideas");
+const users = require("./routes/users");
 
 mongoose
   .connect("mongodb://localhost:27017/ideas")
@@ -10,6 +11,7 @@ mongoose
 
 app.use(express.json());
 app.use("/api/ideas", ideas);
+app.use("/api/users", users);
 
 app.set("view engine", "pug");
 app.set("views", "./views");

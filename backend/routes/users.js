@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { Idea, ideaPostSchema } = require("../models/idea-model");
+const mongoose = require("mongoose");
+const { User, userSchema } = require("../models/user-model");
 
 function addToDb(req, res) {
   const idea = new Idea({
@@ -10,11 +11,15 @@ function addToDb(req, res) {
   const dbSaveResult = idea.save();
 }
 
-async function renderIdeas(req, res) {
-  let ideas = await Idea.find();
-  res.render("ideas", {
-    ideas: ideas,
+function addUserToDb(req, res) {
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
   });
+  const dbSaveResult = user.save();
+
+  return user;
 }
 
 router.use(function (req, res, next) {
@@ -26,18 +31,19 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.get("/", async (req, res) => {
-  renderIdeas(req, res);
-});
-
 router.post("/", async (req, res) => {
-  const result = ideaPostSchema.validate(req.body);
+  const result = userSchema.validate(req.body);
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
     return;
   }
-  addToDb(req, res);
-  renderIdeas(req, res);
+
+  let userAlreadyExists = await User.findOne({ email: req.body.email });
+  if (userAlreadyExists) {
+    return res.status(400).send("User already registered");
+  }
+  const user = addUserToDb(req, res);
+  res.send(user);
 });
 
 module.exports = router;
