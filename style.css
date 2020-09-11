@@ -17,7 +17,7 @@ h6 {
 .jumbotron,
 .navbar {
   border-radius: 0px;
-  background: rgb(250, 181, 181);
+  background: rgb(236, 159, 185);
 }
 
 .nav-link::after {
@@ -75,7 +75,18 @@ h6 {
   background: blueviolet !important;
   border-radius: 0;
   letter-spacing: 1px;
-  padding: 10px 20px;
+  padding: 8px px;
   color: aliceblue;
   box-shadow: 2px 4px 2px 0 rgba(5, 74, 74, 0.8);
+}
+
+.modal {
+  height: 80vh;
+  margin: 50px auto;
+}
+
+.modal-body,
+.modal .form-group {
+  border: 0;
+  background: #ffffff;
 }

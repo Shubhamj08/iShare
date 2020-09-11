@@ -13,24 +13,44 @@ $(document).ready(() => {
       data: JSON.stringify(idea),
       contentType: "application/json",
       url: "http://localhost:3000/api/ideas",
-      success: function (data) {},
+      beforeSend: function (jqXHR, settings) {
+        jqXHR.setRequestHeader(
+          "x-auth-token",
+          localStorage.getItem("ishare-auth-header")
+        );
+      },
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (e) {
+        console.log(
+          "login error, status: " + e.status + " message :" + e.responseText
+        );
+      },
     });
     location.reload(true);
   });
 
-  $("").click(function () {
+  $("#register").click(function () {
+    if ($("#password-r").val() != $("#re-password-r").val()) {
+      $("#warnings").html("passwords do not match!");
+      console.log($("#password-r").val(), $("#re-password-r").val());
+      return;
+    }
+
     const user = {
-      username: $("#username").val(),
-      email: $("#email").val(),
-      password: $("#password").val(),
+      username: $("#username-r").val(),
+      email: $("#email-r").val(),
+      password: $("#password-r").val(),
     };
+
     $.ajax({
       type: "POST",
       data: JSON.stringify(user),
       contentType: "application/json",
-      url: "http://localhost:3000/api/ideas",
+      url: "http://localhost:3000/api/users",
       success: function (data) {
-        console.log(JSON.stringify(user));
+        localStorage.setItem("ishare-auth-header", data);
       },
     });
   });

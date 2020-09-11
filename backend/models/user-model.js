@@ -16,7 +16,10 @@ const userSchemaForDB = new mongoose.Schema({
 });
 
 userSchemaForDB.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
+  const token = jwt.sign(
+    { username: this.username, email: this.email },
+    config.get("jwtPrivateKey")
+  );
   return token;
 };
 

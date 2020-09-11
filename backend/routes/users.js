@@ -18,7 +18,7 @@ router.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, x-auth-token"
   );
   next();
 });
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
   const user = await addUserToDb(req, res);
 
   const token = user.generateAuthToken();
-  res.header("x-auth-token", token).send(user);
+  res.send(token);
 });
 
 module.exports = router;
