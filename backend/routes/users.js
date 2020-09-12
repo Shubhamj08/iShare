@@ -37,7 +37,7 @@ router.post("/", async (req, res) => {
 
   let userAlreadyExists = await User.findOne({ email: req.body.email });
   if (userAlreadyExists) {
-    return res.status(400).send("User already registered");
+    return res.status(400).send("User with this email already registered");
   }
   const user = await addUserToDb(req, res);
 

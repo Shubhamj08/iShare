@@ -17,7 +17,12 @@ h6 {
 .jumbotron,
 .navbar {
   border-radius: 0px;
-  background: rgb(236, 159, 185);
+  background: linear-gradient(to bottom, rgb(148, 203, 228), rgb(24, 51, 56));
+}
+
+.navbar {
+  background: rgb(24, 51, 56);
+  box-shadow: 2px 8px 8px 2px rgb(129, 133, 133);
 }
 
 .nav-link::after {
@@ -27,7 +32,7 @@ h6 {
   top: 90%;
   left: 0;
   height: 3px;
-  background: rgba(5, 74, 74, 0.8);
+  background: rgba(249, 250, 250, 0.8);
   transform: scaleX(0);
   transition: transform 0.35s ease;
 }
@@ -67,8 +72,8 @@ h6 {
 }
 
 .form-group {
-  border: 1px solid teal;
-  background: rgba(228, 166, 182, 0.4);
+  background: rgb(248, 248, 248);
+  box-shadow: 0 2px 8px 0 rgb(129, 133, 133);
 }
 
 .btn {
@@ -77,7 +82,7 @@ h6 {
   letter-spacing: 1px;
   padding: 8px px;
   color: aliceblue;
-  box-shadow: 2px 4px 2px 0 rgba(5, 74, 74, 0.8);
+  box-shadow: 0 2px 4px 1px rgb(129, 133, 133);
 }
 
 .modal {
@@ -89,4 +94,5 @@ h6 {
 .modal .form-group {
   border: 0;
   background: #ffffff;
+  box-shadow: none;
 }
