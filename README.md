@@ -6,9 +6,7 @@
 
 ## Current features of page
 
-#### users can see all the ideas right away on opening the page.
-
-#### users have to register in order to post their ideas or login if already registered.
+#### users can see all the ideas right away on opening the page but need to register in order to post their ideas or login if already registered.
 
 ## Upcoming features
 
@@ -18,12 +16,12 @@
 
 ## Front-end
 
-### HTML, CSS, JQuery
+#### HTML, CSS, JQuery
 
 ## Back-end
 
-### nodejs, express, pug(templating engine)
+#### nodejs, express, pug(templating engine)
 
 ## Database
 
-### mongoDB
+#### mongoDB
