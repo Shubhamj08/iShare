@@ -5,6 +5,19 @@ $(document).ready(function () {
     $("#ideas-container").append(data);
   });
 
+  $.ajax({
+    type: "POST",
+    data: JSON.stringify({ loc: location.href }),
+    contentType: "application/json",
+    url: "http://localhost:3000/api/users/location",
+    success: function (data) {
+      console.log(data);
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
   $("#submit-post").click(function () {
     const idea = {
       title: $("#title").val(),
@@ -21,7 +34,9 @@ $(document).ready(function () {
           localStorage.getItem("ishare-auth-header")
         );
       },
-      success: function (data) {},
+      success: function (data) {
+        location.reload(true);
+      },
       error: function (e) {
         if (e.responseText == "Invalid Token") {
           $("#myModal-l").modal("show");
@@ -49,8 +64,8 @@ $(document).ready(function () {
       contentType: "application/json",
       url: "http://localhost:3000/api/users",
       success: function (data) {
-        localStorage.setItem("ishare-auth-header", data);
-        isUserLoggedIn();
+        $("#myModal").modal("hide");
+        alert(data);
       },
       error: function (e) {
         alert(e.responseText);
