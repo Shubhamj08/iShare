@@ -68,12 +68,6 @@ router.get("/verify", async (req, res) => {
   res.redirect(loc);
 });
 
-// route handler to get the current user
-router.get("/me", auth, async (req, res) => {
-  const user = await User.findById(req.user._id).select("-password");
-  res.send(user);
-});
-
 // route handler to register a user
 router.post("/", async (req, res) => {
   const result = userSchema.validate(req.body);

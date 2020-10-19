@@ -6,6 +6,24 @@ $(document).ready(function () {
   });
 
   $.ajax({
+    type: "GET",
+    url: "http://localhost:3000/api/auth/me",
+    beforeSend: function (jqXHR, settings) {
+      jqXHR.setRequestHeader(
+        "x-auth-token",
+        localStorage.getItem("ishare-auth-header")
+      );
+    },
+    success: function (data) {
+      $("#user_name").html(data.username);
+      $("#user_contact").html(data.email);
+    },
+    error: function (e) {
+      console.log(e);
+    },
+  });
+
+  $.ajax({
     type: "POST",
     data: JSON.stringify({ loc: location.href }),
     contentType: "application/json",

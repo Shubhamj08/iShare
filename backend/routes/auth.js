@@ -6,6 +6,7 @@ const Joi = require("joi");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const { User } = require("../models/user-model");
+const auth = require("../middleware/auth-middle");
 
 const userSchema = Joi.object({
   email: Joi.string().min(5).max(255).required().email(),
@@ -19,6 +20,14 @@ router.use(function (req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept, x-auth-token"
   );
   next();
+});
+
+// route handler to get the current user
+router.get("/me", auth, async (req, res) => {
+  const user = await User.findOne({ email: req.user.email }).select(
+    "-password -_id"
+  );
+  res.send(user);
 });
 
 router.post("/", async (req, res) => {

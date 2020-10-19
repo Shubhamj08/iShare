@@ -88,10 +88,25 @@
         <button type="submit" id="submit-post" class="btn">Post</button>
       </div>
     </section>
-    <section
-      class="container d-flex flex-wrap my-5"
-      id="ideas-container"
-    ></section>
+
+
+    <section class="container">
+      <div class="row">
+        <div class="col-7">
+          <div id="ideas-container"></div>
+        </div>
+        <div class="col-5">
+          <div class="card p-1" style="width:400px;">
+            <img class="card-img-top" src="assets/Profile.webp" alt="Profile">
+            <div class="card-body">
+              <h4 class="card-title" id="user_name"></h4>
+              <p class="card-text" id="user_contact"></p>
+              <a href="#" class="btn btn-primary">See Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- register modal -->
     <div class="modal w-50" id="myModal">

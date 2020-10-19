@@ -60,7 +60,7 @@ h6 {
   width: 47%;
   height: auto;
   margin: 5px;
-  box-shadow: 0 2px 8px 0 rgb(129, 133, 133);
+  box-shadow: 5px 5px 10px -5px rgb(177, 180, 180);
 }
 
 .card-title {
