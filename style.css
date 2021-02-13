@@ -1,5 +1,5 @@
 body {
-  background: #ffffff;
+  background: #222222;
   font-family: "Lora", serif;
 }
 
@@ -17,12 +17,12 @@ h6 {
 .jumbotron,
 .navbar {
   border-radius: 0px;
-  background: linear-gradient(to bottom, rgb(148, 203, 228), rgb(24, 51, 56));
+  background: linear-gradient(to bottom, rgb(105, 141, 158), rgb(24, 51, 56));
 }
 
 .navbar {
   background: rgb(24, 51, 56);
-  box-shadow: 2px 8px 8px 2px rgb(129, 133, 133);
+  box-shadow: 0 4px 8px -2px rgb(0, 0, 0);
 }
 
 .nav-link::after {
@@ -56,11 +56,17 @@ h6 {
   cursor: pointer;
 }
 
+#ideas-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .card {
+  background-color: thistle;
   width: 47%;
   height: auto;
   margin: 5px;
-  box-shadow: 5px 5px 10px -5px rgb(177, 180, 180);
+  box-shadow: 5px 5px 10px -5px rgb(0, 0, 0);
 }
 
 .card-title {
@@ -72,8 +78,9 @@ h6 {
 }
 
 .form-group {
-  background: rgb(248, 248, 248);
-  box-shadow: 0 2px 8px 0 rgb(129, 133, 133);
+  background: thistle;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px 0 rgb(0, 0, 0);
 }
 
 .btn {
@@ -82,7 +89,7 @@ h6 {
   letter-spacing: 1px;
   padding: 8px px;
   color: aliceblue;
-  box-shadow: 0 2px 4px 1px rgb(129, 133, 133);
+  box-shadow: 0 2px 4px 1px #aaaaaa;
 }
 
 .modal {
@@ -95,4 +102,12 @@ h6 {
   border: 0;
   background: #ffffff;
   box-shadow: none;
+}
+
+#user_name {
+  font-size: small;
+}
+
+#user_contact {
+  font-size: smaller;
 }
