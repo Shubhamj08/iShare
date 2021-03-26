@@ -9,7 +9,7 @@ class IdeaList extends Component {
                 {this.props.ideas.map(
                     idea => <Idea
                         key={idea.id}
-                        data={idea.data}
+                        idea={idea}
                         onLike={() => this.props.onLike(idea)}
                         onShare={() => this.props.onShare(idea)}
                     />

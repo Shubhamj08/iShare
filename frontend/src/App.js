@@ -2,6 +2,11 @@ import './App.css';
 import IdeaList from './components/ideaList';
 import Navbar from './components/navbar';
 import React, { Component } from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import PostIdea from './components/post';
+import Login from './components/login';
+import NotFound from './components/notFound';
+import Idea from './components/idea';
 
 class App extends Component {
   
@@ -60,11 +65,17 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <main className="container">
-          <IdeaList
-            onLike={this.handleLike}
-            onShare={this.handleShare}
-            ideas={this.state.ideas}
-          />
+          <Switch>
+            <Route path="/post" component={PostIdea}></Route>
+            <Route path="/login" component={Login}></Route>
+            <Route path="/ideas" render={() => <IdeaList
+              onLike={this.handleLike}
+              onShare={this.handleShare}
+              ideas={this.state.ideas} /> }></Route>
+            <Route path="/not-found" component={NotFound}></Route>
+            <Redirect from="/" exact to="ideas" />
+            <Redirect to="/not-found" />
+          </Switch>
         </main>
       </div>
     );
