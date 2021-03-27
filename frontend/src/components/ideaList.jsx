@@ -8,7 +8,7 @@ class IdeaList extends Component {
             <div className="row no-gutters">
                 {this.props.ideas.map(
                     idea => <Idea
-                        key={idea.id}
+                        key={idea._id}
                         idea={idea}
                         onLike={() => this.props.onLike(idea)}
                         onShare={() => this.props.onShare(idea)}

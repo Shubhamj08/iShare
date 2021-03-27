@@ -12,7 +12,7 @@ const Navbar = (props) => {
                 <div className="navbar-nav ml-auto">
                     <NavLink className="nav-item nav-link" to="/ideas">IDEAS</NavLink>
                     <NavLink className="nav-item nav-link" to="/post">POST</NavLink>
-                    <NavLink className="nav-item nav-link" to="/login">LOGIN</NavLink>
+                    <NavLink className="nav-item nav-link" to="/auth">LOGIN/SIGNUP</NavLink>
                 </div>
             </div>
         </nav>

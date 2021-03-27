@@ -8,12 +8,12 @@ const Input = (props) => {
                 type={props.type}
                 className="form-control"
                 id={props.name}
-                placeholder={`Enter ${props.label}`}
+                placeholder={`${props.label}`}
                 value={props.value}
                 name={props.name}
                 onChange={props.onChange}
             />
-            {props.error && <div className="alert alert-danger">{props.error}</div>}
+            {props.error && <small className="mt-5 text-danger">{props.error}</small>}
         </div>
      );
 }

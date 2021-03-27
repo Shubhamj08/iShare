@@ -13,9 +13,7 @@ async function addToDb(req, res) {
 
 async function renderIdeas(req, res) {
   let ideas = await Idea.find();
-  res.render("ideas", {
-    ideas: ideas,
-  });
+  res.send(ideas);
 }
 
 router.use(function (req, res, next) {

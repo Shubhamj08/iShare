@@ -12,8 +12,8 @@ async function addUserToDb(req, res) {
   const user = new User(_.pick(req.body, ["username", "email", "password"]));
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
-  await user.save();
-  return user;
+  const result = await user.save();
+  return result;
 }
 
 // function toh send mail to user
@@ -81,13 +81,21 @@ router.post("/", async (req, res) => {
     return res.status(400).send("User with this email already registered");
   }
 
-  request = req;
-  response = res;
-  sendEmail(req, res);
+  try {
+    const result = await addUserToDb(req, res);
+    res.status(200).send(result);
+  } catch(e) {
+    res.status(401).send(e);
+  }
+  
 
-  res.send(
-    "We have sent a verification email to your account please click on the link provided in the email to continue verify your identity.."
-  );
+  // request = req;
+  // response = res;
+  // sendEmail(req, res);
+
+  // res.send(
+  //   "We have sent a verification email to your account please click on the link provided in the email to continue verify your identity.."
+  // );
 });
 
 let loc = "http://127.0.0.1:5500/index.html";

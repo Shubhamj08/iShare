@@ -2,49 +2,22 @@ import './App.css';
 import IdeaList from './components/ideaList';
 import Navbar from './components/navbar';
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PostIdea from './components/post';
-import Login from './components/login';
 import NotFound from './components/notFound';
-import Idea from './components/idea';
+import Auth from './components/auth';
 
 class App extends Component {
   
+
+  async componentDidMount() {
+    const { data: ideas } = await axios.get('http://localhost:3000/api/ideas');
+    this.setState({ ideas });
+  }
+
   state = { 
-        ideas: [
-            {
-                id: 1,
-                data: {
-                        heading: "Idea 1",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis magnam amet debitis quasi nemo odio, similique itaque alias vitae exercitationem nulla, nihil aspernatur earum adipisci! At tempore neque esse voluptates!",
-                        liked: true
-                }
-            },
-            {
-                id: 2,
-                data: {
-                        heading: "Idea 2",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis magnam amet debitis quasi nemo odio, similique itaque alias vitae exercitationem nulla, nihil aspernatur earum adipisci! At tempore neque esse voluptates!",
-                        liked: false
-                }
-            },
-            {
-                id: 3,
-                data: {
-                        heading: "Idea 3",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis magnam amet debitis quasi nemo odio, similique itaque alias vitae exercitationem nulla, nihil aspernatur earum adipisci! At tempore neque esse voluptates!",
-                        liked: false
-                }
-            },
-            {
-                id: 4,
-                data: {
-                        heading: "Idea 4",
-                        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis magnam amet debitis quasi nemo odio, similique itaque alias vitae exercitationem nulla, nihil aspernatur earum adipisci! At tempore neque esse voluptates!",
-                        liked: true
-                }
-            },
-        ],
+        ideas: [],
         
     }
 
@@ -67,7 +40,7 @@ class App extends Component {
         <main className="container">
           <Switch>
             <Route path="/post" component={PostIdea}></Route>
-            <Route path="/login" component={Login}></Route>
+            <Route path="/auth" component={Auth}></Route>
             <Route path="/ideas" render={() => <IdeaList
               onLike={this.handleLike}
               onShare={this.handleShare}
