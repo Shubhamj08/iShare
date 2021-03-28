@@ -12,7 +12,12 @@ const Navbar = (props) => {
                 <div className="navbar-nav ml-auto">
                     <NavLink className="nav-item nav-link" to="/ideas">IDEAS</NavLink>
                     <NavLink className="nav-item nav-link" to="/post">POST</NavLink>
-                    <NavLink className="nav-item nav-link" to="/auth">LOGIN/SIGNUP</NavLink>
+                    {!props.user && <NavLink className="nav-item nav-link" to="/auth">LOGIN/SIGNUP</NavLink>}
+                    {props.user &&
+                        <React.Fragment>
+                            <NavLink className="nav-item nav-link" to="/profile">{ props.user.username }</NavLink>
+                            <NavLink className="nav-item nav-link" to="/logout">LOGOUT</NavLink>
+                        </React.Fragment>}
                 </div>
             </div>
         </nav>

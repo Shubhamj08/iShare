@@ -6,8 +6,7 @@ import Share from './common/share';
 
 
 class Idea extends Component {
-
-    render() { 
+    render() {
         var { idea } = this.props;
         return (
             <div className="col-sm-6">
@@ -19,7 +18,7 @@ class Idea extends Component {
                         <div className="card-text">{ idea.description }</div>
                     </div>
                     <div className="card-footer bg-white text-right">
-                        <Like liked={true} onLike={ this.props.onLike }/>
+                        <Like liked={this.props.idea.liked} onLike={ this.props.onLike }/>
                         <Share onShare={ this.props.onShare }/>
                     </div>
                 </div>

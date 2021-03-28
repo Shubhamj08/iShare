@@ -10,6 +10,7 @@ class IdeaList extends Component {
                     idea => <Idea
                         key={idea._id}
                         idea={idea}
+                        user={this.props.user}
                         onLike={() => this.props.onLike(idea)}
                         onShare={() => this.props.onShare(idea)}
                     />

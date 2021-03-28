@@ -83,8 +83,8 @@ class Form extends Component {
                     value={this.state.data[name]}
                     onChange={this.handleChange}
                     rows="5"
-                    error={this.state.errors[name]}
                 />
+                {this.state.errors[name] && <small className="mt-5 text-danger">{this.state.errors[name]}</small>}
             </div>
         );
     }

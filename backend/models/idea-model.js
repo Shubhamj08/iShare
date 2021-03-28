@@ -8,6 +8,11 @@ const Idea = mongoose.model(
     description: String,
     tags: [String],
     date: { type: Date, default: Date.now },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    likes: [{type: mongoose.Schema.Types.ObjectId, ref: "User"}]
   })
 );
 

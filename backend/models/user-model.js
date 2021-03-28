@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Joi = require("Joi");
 const config = require("config");
 const jwt = require("jsonwebtoken");
+const { Idea } = require("./idea-model");
 
 const userSchemaForDB = new mongoose.Schema({
   username: { type: String, required: true, minlength: 4, maxlength: 20 },
@@ -12,12 +13,12 @@ const userSchemaForDB = new mongoose.Schema({
     maxlength: 255,
     unique: true,
   },
-  password: { type: String, required: true, minlength: 8, maxlength: 1024 },
+  password: { type: String, required: true, minlength: 8, maxlength: 1024 }
 });
 
 userSchemaForDB.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { username: this.username, email: this.email },
+    { username: this.username, email: this.email, _id: this._id },
     config.get("jwtPrivateKey")
   );
   return token;

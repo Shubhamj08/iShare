@@ -1,6 +1,8 @@
 import React from 'react';
 import Form from './common/form';
-import axios from 'axios'
+import { Redirect } from 'react-router-dom';
+import { register } from '../services/userService';
+import { getCurrentUser } from '../services/authService';
 const Joi = require('joi-browser');
 
 
@@ -21,19 +23,20 @@ class Signup extends Form {
     };
 
     doSubmit = async (user) => {
-        const req = {
-            username: user.username,
-            email: user.email,
-            password: user.password
+        try {
+            await register(user);
+            this.props.history.push('/auth/login');
+        } catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = { ...this.state.errors };
+                errors.email = ex.response.data;
+                this.setState({ errors });
+            }
         }
-        const response = await axios.post('http://localhost:3000/api/users', req)
-            .catch((error) => {
-                console.log(error);
-            });
-        console.log(response);
     }
 
-    render() { 
+    render() {
+        if(getCurrentUser()) return <Redirect to='/'/>
         return ( 
             <div className="container mb-5">
                 <form
