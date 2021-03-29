@@ -7,6 +7,8 @@ import PostIdea from './components/post';
 import NotFound from './components/notFound';
 import Auth from './components/auth';
 import Logout from './components/logout';
+import Profile from './components/profile';
+import Home from './components/home';
 import http from './services/httpService';
 import { getCurrentUser } from './services/authService';
 import './App.css';
@@ -24,6 +26,7 @@ class App extends Component {
         if (idea.likes.includes(user._id)) {
           idea.liked = true;
         }
+        idea.nLikes = idea.likes.length;
       }
     });
     this.setState({ ideas, user });
@@ -42,6 +45,7 @@ class App extends Component {
 
     if (!idea.liked) {
       ideas[idx].liked = true;
+      ideas[idx].nLikes += 1;
       this.setState({ ideas });
       try {
         await http.put(`${apiEndPoint}/ideas/like`, idea);
@@ -50,6 +54,7 @@ class App extends Component {
       }
     } else {
       ideas[idx].liked = false;
+      ideas[idx].nLikes -= 1;
       this.setState({ ideas });
       try {
         await http.put(`${apiEndPoint}/ideas/dislike`, idea);
@@ -64,23 +69,25 @@ class App extends Component {
     }
 
   render(){
-    return(
+    return (
       <div className="App">
         <Navbar user={this.state.user} />
-        <main className="container">
+        <main className="container-fluid">
           <Switch>
             <Route path="/post" render={() => <PostIdea
               user = {this.state.user}
             />}></Route>
             <Route path="/auth" component={Auth}></Route>
             <Route path="/logout" component={Logout}></Route>
+            <Route path="/profile" render={() => <Profile user={this.state.user} ideas={this.state.ideas}/>}></Route>
             <Route path="/ideas" render={() => <IdeaList
               onLike={this.handleLike}
               onShare={this.handleShare}
               ideas={this.state.ideas}
               user={ this.state.user }/>}></Route>
             <Route path="/not-found" component={NotFound}></Route>
-            <Redirect from="/" exact to="ideas" />
+            {/* <Redirect from="/" exact to="/ideas" /> */}
+            <Route path="/" exact component={Home}></Route>
             <Redirect to="/not-found" />
           </Switch>
         </main>

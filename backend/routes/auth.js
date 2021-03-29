@@ -25,8 +25,8 @@ router.use(function (req, res, next) {
 // route handler to get the current user
 router.get("/me", auth, async (req, res) => {
   const user = await User.findOne({ email: req.user.email }).select(
-    "-password -_id"
-  );
+    "-password"
+  ).populate('ideas');
   res.send(user);
 });
 

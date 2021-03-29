@@ -31,12 +31,15 @@ class PostIdea extends Form {
 
     render() { 
         return (
-            <div className="container">
+            <div className="container mt-5">
                 {!this.props.user && <h4 className="display-4 text-center">
                     You need to login in order to post!
                 </h4>}
+                {this.props.user && <h4 className="display-4 text-center">
+                    Have an Idea?<br/>Post it here!
+                </h4>}
                 <form
-                    className="form-group w-75 rounded border p-5 mx-auto"
+                    className="form-group w-75 rounded border p-5 mt-3 mx-auto"
                     style={{boxShadow: '4px 4px 16px -8px #888888'}}
                     onSubmit={this.handleSubmit}
                 >

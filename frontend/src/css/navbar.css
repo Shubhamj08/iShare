@@ -1,0 +1,14 @@
+.navbar {
+	box-shadow: 4px 4px 16px -8px #888888;
+	font-family: "Montserrat", sans-serif;
+}
+
+.logo {
+	width: 30%;
+	height: auto;
+}
+
+.profile-image {
+	width: 4%;
+	height: auto;
+}

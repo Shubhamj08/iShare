@@ -5,17 +5,31 @@ const { Idea, ideaPostSchema } = require("../models/idea-model");
 const { User } = require("../models/user-model");
 
 async function addToDb(req, res) {
-  const user = await User.findOne({ email: req.user.email });
-  const idea = new Idea({
+  let user = await User.findOne({ _id: req.user._id });
+  let idea = new Idea({
     title: req.body.title,
     description: req.body.description,
     user
   });
-  await idea.save();
+
+ try {
+   idea = await idea.save();
+ 
+   user = await User.findByIdAndUpdate(req.user._id, {
+     $push: {ideas: idea._id}
+   }, {
+       new: true,
+       useFindAndModify: false
+    });
+ } catch (ex) {
+   console.log(ex);
+ }
+
 }
 
 async function renderIdeas(req, res) {
   let ideas = await Idea.find();
+  ideas.sort(function (a, b) { return b.date - a.date });
   res.send(ideas);
 }
 

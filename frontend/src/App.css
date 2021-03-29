@@ -1,13 +1,14 @@
 .App {
 }
 
-.navbar {
-	margin-bottom: 50px;
-}
-
 .App-logo {
 	height: 40vmin;
 	pointer-events: none;
+}
+
+button {
+	border-radius: 2px !important;
+	box-shadow: 2px 2px 4px -1px #888888;
 }
 
 @media (prefers-reduced-motion: no-preference) {

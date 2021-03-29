@@ -7,14 +7,14 @@ import Signup from './signup';
 class Auth extends Component {
     render() { 
         return (
-        <React.Fragment>
+        <div class="container">
             <AuthSidebar />
             <Switch>
                 <Route path="/auth/login" component={Login}></Route>
                 <Route path="/auth/signup" component={Signup}></Route>
                 <Redirect from="/auth" exact to="/auth/login" />
             </Switch>
-        </React.Fragment>
+        </div>
          );
     }
 }
