@@ -27,12 +27,6 @@ async function addToDb(req, res) {
 
 }
 
-async function renderIdeas(req, res) {
-  let ideas = await Idea.find();
-  ideas.sort(function (a, b) { return b.date - a.date });
-  res.send(ideas);
-}
-
 router.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -44,7 +38,6 @@ router.use(function (req, res, next) {
 });
 
 router.put("/like", auth, async (req, res) => {
-  try {
     const updatedIdea = await Idea.findByIdAndUpdate(req.body._id, {
       $push: { likes: req.user._id }
     }, {
@@ -53,13 +46,9 @@ router.put("/like", auth, async (req, res) => {
     });
     
     res.send(updatedIdea);
-  } catch (ex) {
-    console.log(ex);
-  }
 });
 
 router.put("/dislike", auth, async (req, res) => {
-  try {
     const updatedIdea = await Idea.findByIdAndUpdate(req.body._id, {
       $pull: { likes: req.user._id }
     }, {
@@ -67,13 +56,12 @@ router.put("/dislike", auth, async (req, res) => {
     });
     
     res.send(updatedIdea);
-  } catch (ex) {
-    console.log(ex);
-  }
 });
 
 router.get("/", async (req, res) => {
-  renderIdeas(req, res);
+    let ideas = await Idea.find();
+    ideas.sort(function (a, b) { return b.date - a.date });
+    res.send(ideas);
 });
 
 router.post("/", auth, async (req, res) => {
