@@ -9,8 +9,10 @@ import Auth from './components/auth';
 import Logout from './components/logout';
 import Profile from './components/profile';
 import Home from './components/home';
+import FullIdea from './components/fullIdea';
 import http from './services/httpService';
 import { getCurrentUser } from './services/authService';
+import { getIdeas } from './services/ideaService';
 import './App.css';
 
 
@@ -18,15 +20,13 @@ import './App.css';
 class App extends Component {
 
   async componentDidMount() {
-    const { data: ideas } = await http.get(`${apiEndPoint}/ideas`);
+    const ideas = await getIdeas();
     const user = getCurrentUser();
-
     ideas.forEach(idea => {
       if (user) {
         if (idea.likes.includes(user._id)) {
           idea.liked = true;
         }
-        idea.nLikes = idea.likes.length;
       }
     });
     this.setState({ ideas, user });
@@ -74,6 +74,7 @@ class App extends Component {
         <Navbar user={this.state.user} />
         <main className="container-fluid">
           <Switch>
+            <Route path="/ideas/:_id" component={FullIdea}></Route>
             <Route path="/post" render={() => <PostIdea
               user = {this.state.user}
             />}></Route>
