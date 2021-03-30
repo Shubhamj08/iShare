@@ -1,4 +1,3 @@
 {
-  "jwtPrivateKey": "ishare_jwtPrivateKey",
-  "password": "ishare_g_pass"
+  "jwtPrivateKey": "ishare_jwtPrivateKey"
 }

@@ -67,7 +67,7 @@ class Profile extends Component {
         return (
             <div className="row mt-3">
                 <div className="col-sm-3 info">
-                    <h4 className="display-4 text-center">{user.username && user.username.toUpperCase()}</h4>
+                    <h4 className="text-center">{user.username && user.username.toUpperCase()}</h4>
                     <p className="text-center">{user.email && user.email}</p>
                 </div>
                 <div className="col-sm-9">

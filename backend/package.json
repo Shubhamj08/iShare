@@ -4,12 +4,17 @@
   "description": "this web app is used to share ideas across the world",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "14.5.0"
   },
   "author": "Shubham Jha",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "compression": "^1.7.4",
     "config": "^3.3.1",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
@@ -19,7 +24,6 @@
     "mongoose": "^5.10.3",
     "multer": "^1.4.2",
     "nodemailer": "^6.4.11",
-    "nodemon": "^2.0.6",
-    "pug": "^3.0.0"
+    "nodemon": "^2.0.6"
   }
 }

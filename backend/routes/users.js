@@ -1,5 +1,4 @@
 const auth = require("../middleware/auth-middle");
-const config = require("config");
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
