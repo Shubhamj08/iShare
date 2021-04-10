@@ -2,25 +2,21 @@
 
 ## Goal
 
-#### The goal of this webpage is to connect people who have some dream, vision, idea with the people who can accomplish those ideas using their skills...
+#### The goal of the application is to connect people who have some dream, vision, idea with the people who can accomplish those ideas using their skills...
 
-## Current features of page
+## Current features of application
 
-#### users can see all the ideas right away on opening the page but need to register in order to post their ideas or login if already registered.
-
-## Upcoming features
-
-#### User profile, chat and few more...
+#### post idea, see ideas from all users, like, user profile
 
 # Technologies Used
 
 ## Front-end
 
-#### HTML, CSS, JQuery
+#### React, HTML, CSS, Bootstrap
 
 ## Back-end
 
-#### nodejs, express, pug(templating engine)
+#### Nodejs, express
 
 ## Database
 
