@@ -3,6 +3,7 @@ const winston = require("winston");
 require("winston-mongodb");
 const express = require("express");
 const app = express();
+const config = require("config");
 
 winston.exceptions.handle(
     new winston.transports.File({ filename: 'uncaughtExceptions.log' })
@@ -13,7 +14,7 @@ process.on('unhandledRejection', (ex) => {
 
 winston.add(new winston.transports.File({ filename: 'logfile.log' }));
 winston.add(new winston.transports.MongoDB({
-    db: 'mongodb://localhost:27017/ishare',
+    db: `mongodb+srv://shubham:${config.get("mongoDbUrl")}@isharedb.d6ql0.mongodb.net/ishare?retryWrites=true&w=majority`,
     level: 'error'
 }));
 
