@@ -1,4 +1,4 @@
 {
   "jwtPrivateKey": "ishare_jwtPrivateKey",
-  "mongoDbUrl": "mongo_url"
+  "mongoDbUrl": "mongo_pass"
 }
