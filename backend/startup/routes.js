@@ -9,5 +9,11 @@ module.exports = function (app) {
     app.use("/api/ideas", ideas);
     app.use("/api/users", users);
     app.use("/api/auth", auth);
+    app.get("/", (req, res) => {
+        res.send("ISHARE Backend server");
+    });
+    app.get("/api", (req, res) => {
+        res.send("Use /ideas, /users, /auth endpoints");
+    });
     app.use(error);
 }
