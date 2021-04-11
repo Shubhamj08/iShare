@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const config = require("config");
 
 module.exports = function () {
     mongoose
-        .connect("mongodb://localhost:27017/ishare", {
+        .connect(config.get("mongoDbUrl"), {
             useUnifiedTopology: true,
             useNewUrlParser: true
         })
