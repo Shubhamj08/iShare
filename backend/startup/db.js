@@ -3,7 +3,7 @@ const config = require("config");
 
 module.exports = function () {
     mongoose
-        .connect(`mongodb+srv://shubham:${config.get("mongoDbUrl")}@isharedb.d6ql0.mongodb.net/ishare`, {
+        .connect(`mongodb+srv://shubham:${config.get("mongoDbUrl")}@isharedb.d6ql0.mongodb.net/ishare?retryWrites=true&w=majority`, {
             useUnifiedTopology: true,
             useNewUrlParser: true
         })
