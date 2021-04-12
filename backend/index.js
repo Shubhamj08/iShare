@@ -8,6 +8,9 @@ const config = require("config");
 winston.exceptions.handle(
     new winston.transports.File({ filename: 'uncaughtExceptions.log' })
 );
+process.on('unhandledRejection', (ex) => {
+    throw ex;
+});
 
 winston.add(new winston.transports.File({ filename: 'logfile.log' }));
 winston.add(new winston.transports.MongoDB({
@@ -20,5 +23,4 @@ require("./startup/db")();
 require("./startup/routes")(app);
 require("./startup/prod")(app);
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`listening on port ${port}...`));
+app.listen(process.env.PORT || 3000, () => console.log(`listening on port ${process.env.PORT || 3000}...`));
