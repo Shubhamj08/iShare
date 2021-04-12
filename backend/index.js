@@ -23,4 +23,4 @@ require("./startup/db")();
 require("./startup/routes")(app);
 require("./startup/prod")(app);
 
-app.listen(process.env.PORT || 3000, 'localhost' || '0.0.0.0', () => console.log(`listening on port ${process.env.PORT || 3000}...`));
+app.listen(process.env.PORT || 3000, process.env.HOST || '0.0.0.0', () => console.log(`listening on port ${process.env.PORT || 3000}...`));
