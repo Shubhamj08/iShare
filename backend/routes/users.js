@@ -1,7 +1,6 @@
 const auth = require("../middleware/auth-middle");
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const { User, userSchema } = require("../models/user-model");
