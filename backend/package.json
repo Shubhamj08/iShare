@@ -8,7 +8,8 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "14.16.1"
+    "node": "14.16.1",
+    "npm": "7.9.0"
   },
   "author": "Shubham Jha",
   "license": "ISC",
