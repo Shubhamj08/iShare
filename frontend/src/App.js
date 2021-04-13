@@ -87,8 +87,8 @@ class App extends Component {
               ideas={this.state.ideas}
               user={ this.state.user }/>}></Route>
             <Route path="/not-found" component={NotFound}></Route>
-            {/* <Redirect from="/" exact to="/ideas" /> */}
-            <Route path="/" exact component={Home}></Route>
+            <Redirect from="/" exact to="/ideas" />
+            {/* <Route path="/" exact component={Home}></Route> */}
             <Redirect to="/not-found" />
           </Switch>
         </main>
