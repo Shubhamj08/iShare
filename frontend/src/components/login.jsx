@@ -2,7 +2,9 @@ import React from 'react';
 import Form from './common/form';
 import { login, getCurrentUser } from '../services/authService';
 import { Redirect } from 'react-router-dom';
+import "../css/auth.css";
 const Joi = require('joi-browser');
+
 
 
 class Login extends Form {

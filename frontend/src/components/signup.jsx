@@ -3,6 +3,7 @@ import Form from './common/form';
 import { Redirect } from 'react-router-dom';
 import { register } from '../services/userService';
 import { getCurrentUser } from '../services/authService';
+import "../css/auth.css";
 const Joi = require('joi-browser');
 
 

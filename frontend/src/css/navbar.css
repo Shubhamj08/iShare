@@ -8,6 +8,10 @@
 	height: auto;
 }
 
+.navbar-brand {
+	width: 50%;
+}
+
 .profile-image {
 	width: 4%;
 	height: auto;

@@ -1,0 +1,5 @@
+@media only screen and (max-width: 600px) {
+	form.form-group {
+		width: 100% !important;
+	}
+}
