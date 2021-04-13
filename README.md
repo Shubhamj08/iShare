@@ -1,5 +1,7 @@
 # iShare
 
+<a href="https://ishare-client.herokuapp.com/ideas"> ISHARE </a>
+
 ## Goal
 
 #### The goal of the application is to connect people who have some dream, vision, idea with the people who can accomplish those ideas using their skills...
