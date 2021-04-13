@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from '../assets/ishare-logo-large.png';
 
 const styles = {

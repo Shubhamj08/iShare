@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import AuthSidebar from './AuthSidebar';
+import AuthSidebar from './authSidebar';
 import Login from './login';
 import Signup from './signup';
 
