@@ -1,5 +1,6 @@
 .card {
 	box-shadow: 4px 4px 16px -8px #888888;
+	min-height: 230px;
 }
 
 .card-title {

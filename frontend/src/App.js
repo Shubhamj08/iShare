@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { apiEndPoint } from './config.json';
+import { ToastContainer, toast } from 'react-toastify';
 import IdeaList from './components/ideaList';
 import Navbar from './components/navbar';
 import PostIdea from './components/post';
@@ -13,6 +14,7 @@ import FullIdea from './components/fullIdea';
 import http from './services/httpService';
 import { getCurrentUser } from './services/authService';
 import { getIdeas } from './services/ideaService';
+import "react-toastify/dist/ReactToastify.css";
 import './App.css';
 
 
@@ -65,12 +67,14 @@ class App extends Component {
   }
   
     handleShare = (idea) => {
-        console.log("Share button clicked", idea);
+      navigator.clipboard.writeText(`${idea.title}\n${idea.description}`);
+      toast.success("Copied to clipboard");
     }
 
   render(){
     return (
       <div className="App">
+        <ToastContainer/>
         <Navbar user={this.state.user} />
         <main className="container-fluid">
           <Switch>

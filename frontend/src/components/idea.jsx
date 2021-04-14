@@ -15,7 +15,7 @@ class Idea extends Component {
                         <Link to={`/ideas/${idea._id}`} className="card-title">{ idea.title && idea.title.toUpperCase() }</Link>
                     </div>
                     <div className="card-body text-justify">
-                        <div className="card-text">{ idea.description.length < 200? idea.description: `${idea.description.slice(0, 200)}...` }</div>
+                        <div className="card-text">{ idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>
                     </div>
                     <div className="card-footer bg-white text-right">
                         <Like liked={this.props.idea.liked} onLike={this.props.onLike} />

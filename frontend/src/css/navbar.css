@@ -3,13 +3,9 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-.logo {
-	width: 30%;
-	height: auto;
-}
-
 .navbar-brand {
-	width: 50%;
+	width: 100px;
+	height: auto;
 }
 
 .profile-image {

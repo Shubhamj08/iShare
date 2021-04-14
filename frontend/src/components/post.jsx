@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './common/form';
 import { apiEndPoint } from '../config.json';
 import http from '../services/httpService';
+import { toast } from 'react-toastify';
 const Joi = require("joi-browser");
 
 class PostIdea extends Form {
@@ -13,18 +14,23 @@ class PostIdea extends Form {
     }
 
     schema = {
-        title: Joi.string().max(20).required(),
+        title: Joi.string().max(50).required(),
         description: Joi.string().min(20).required()
     }
 
     doSubmit = async () => {
         const { data } = this.state;
-        try {
-            await http.post(`${apiEndPoint}/ideas`, data);
-            window.location = '/';
-        } catch (ex) {
-            if (ex.response && ex.response.status === 400) {
-                console.log(ex);
+        if (!this.props.user) {
+            toast.error("You have to login first");
+        }
+        else {
+            try {
+                await http.post(`${apiEndPoint}/ideas`, data);
+                window.location = '/';
+            } catch (ex) {
+                if (ex.response && ex.response.status === 400) {
+                    console.log(ex);
+                }
             }
         }
     }
