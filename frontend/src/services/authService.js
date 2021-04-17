@@ -7,12 +7,11 @@ const endPoint = `${apiEndPoint}/auth`;
 http.setJwt(getJwt());
 
 export async function login(user) {
-    const { data: jwt } = await http.post(endPoint, {
+    const { data } = await http.post(endPoint, {
         email: user.username,
         password: user.password
     });
-
-    localStorage.setItem('ishare_token', jwt);
+    localStorage.setItem('ishare_token', data.jsonWebToken);
 }
 
 export function getCurrentUser() {
