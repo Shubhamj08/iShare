@@ -11,13 +11,13 @@ class Idea extends Component {
         return (
             <div className="col-sm-6">
                 <div className="card m-3">
-                    <div className="card-header pb-0 bg-white text-left">
-                        <Link to={`/ideas/${idea._id}`} className="card-title">{ idea.title && idea.title.toUpperCase() }</Link>
+                    <div className="card-header pb-0 text-left">
+                        <Link to={`/ideas/${idea._id}`}>{ idea.title && idea.title.toUpperCase() }</Link>
                     </div>
                     <div className="card-body text-justify">
                         <div className="card-text">{ idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>
                     </div>
-                    <div className="card-footer bg-white text-right">
+                    <div className="card-footer text-right">
                         <Like liked={this.props.idea.liked} onLike={this.props.onLike} />
                         <small className="ml-1">{this.props.idea.nLikes > 0? this.props.idea.nLikes:""}</small>
                         <Share onShare={ this.props.onShare }/>

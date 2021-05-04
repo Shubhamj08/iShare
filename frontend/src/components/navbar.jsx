@@ -6,7 +6,7 @@ import logo from '../assets/ishare-logo.png';
 const Navbar = (props) => {
     return (
         <nav
-            className="navbar navbar-expand-lg navbar-light bg-light sticky-top mb-5"
+            className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top mb-5"
         >
             <Link className="navbar-brand p-0" to="/"><img className='logo img-fluid' src={logo} alt={'IShare'}></img></Link>
             <button className="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

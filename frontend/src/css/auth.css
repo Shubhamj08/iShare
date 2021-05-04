@@ -3,3 +3,7 @@
 		width: 100% !important;
 	}
 }
+
+form.form-group {
+	background: #ffffff;
+}

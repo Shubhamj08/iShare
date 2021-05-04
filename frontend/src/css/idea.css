@@ -1,12 +1,17 @@
 .card {
-	box-shadow: 4px 4px 16px -8px #888888;
+	box-shadow: 4px 4px 16px -8px #777777;
 	min-height: 230px;
 }
 
-.card-title {
+.card-header {
 	font-size: 20px;
 	font-weight: 500;
 	font-family: "Montserrat", sans-serif;
+}
+
+.card-header,
+.card-footer {
+	background-color: inherit !important;
 }
 
 .card-text {
