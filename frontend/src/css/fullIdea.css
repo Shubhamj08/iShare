@@ -4,6 +4,11 @@
 }
 
 @media only screen and (max-width: 600px) {
+	div.full-card {
+		width: 100% !important;
+		padding: 1.6em !important;
+	}
+
 	.display-4 {
 		font-size: 20px !important;
 		font-weight: 400 !important;
