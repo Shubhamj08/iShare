@@ -1,26 +1,75 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import "../css/idea.css";
+import { likeIdea } from '../services/ideaService';
 import Like from './common/like';
 import Share from './common/share';
+import { toast } from 'react-toastify';
+import { getAuthor } from '../services/userService';
 
 
 class Idea extends Component {
+    constructor() {
+        super();
+        this.state = {
+            author:{},
+            idea: {
+                title: "",
+                description: "",
+                liked: false,
+                nLikes: 0,
+            }
+        };
+    }
+
+    componentDidMount = async () => {
+        const { idea } = this.props;
+        let author = this.state.author;
+        if (!author.username) {
+            author = await getAuthor(idea.user);
+            this.setState({ author, idea });
+        } else {
+            this.setState({ idea });
+        }
+    }
+
+    handleLike = async () => {
+        let idea = this.state.idea;
+        if (!idea.liked) {
+            idea.liked = true;
+            idea.nLikes += 1;
+        } else {
+            idea.liked = false;
+            idea.nLikes -= 1;
+        }
+        this.setState({ idea });
+        await likeIdea(this.state.idea);
+    }
+
+    handleShare = () => {
+        const { idea } = this.state;
+        navigator.clipboard.writeText(`${idea['title']}\n${idea['description']}`);
+        toast.success("Copied To Clipboard");
+    }
+
     render() {
-        var { idea } = this.props;
+        var { author, idea } = this.state;
         return (
             <div className="col-sm-6">
                 <div className="card m-3">
                     <div className="card-header pb-0 text-left">
-                        <Link to={`/ideas/${idea._id}`}>{ idea.title && idea.title.toUpperCase() }</Link>
+                        <Link to={`/ideas/${idea._id}`}>{idea.title.toUpperCase()}</Link>
                     </div>
                     <div className="card-body text-justify">
-                        <div className="card-text">{ idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>
+                        <div className="card-text">{idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>
                     </div>
-                    <div className="card-footer text-right">
-                        <Like liked={this.props.idea.liked} onLike={this.props.onLike} />
-                        <small className="ml-1">{this.props.idea.nLikes > 0? this.props.idea.nLikes:""}</small>
-                        <Share onShare={ this.props.onShare }/>
+                    <div className="card-footer d-flex justify-content-between">
+                        <Link to={`/user/${idea.user}`}><small>{author.username}</small></Link>
+                        <div>
+                        <Like liked={idea.liked} onLike={this.handleLike} />
+                        <small className="ml-1">{idea.nLikes > 0? idea.nLikes:""}</small>
+                        <Share onShare={this.handleShare} />
+                        </div>
                     </div>
                 </div>
             </div>

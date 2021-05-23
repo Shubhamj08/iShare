@@ -20,7 +20,31 @@ router.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept, x-auth-token"
   );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
+});
+
+router.post("/user", async (req, res) => {
+  const user = await User.findById(req.body.id);
+  res.send(user);
+});
+
+router.put("/user/changepass", auth, async (req, res) => {
+  const user = await User.findOne({ email: req.body.email });
+  let new_password = req.body.new_password;
+  const curr_password = req.body.curr_password;
+  if (new_password.length < 8)
+    return res.status(400).send("Password cannot be less than 8 characters");
+  let validPassword = await bcrypt.compare(curr_password, user.password);
+  if (!validPassword)
+    return res.status(400).send("Current password is not correct");
+  validPassword = await bcrypt.compare(new_password, user.password);
+  if (validPassword)
+    return res.status(400).send("Current and New Password cannot be same");
+  const salt = await bcrypt.genSalt(10);
+  new_password = await bcrypt.hash(new_password, salt);
+  user.password = new_password;
+  res.send(await user.save());
 });
 
 // route handler to register a user

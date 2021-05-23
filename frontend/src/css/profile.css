@@ -1,3 +1,13 @@
 .info {
 	border-right: 2px solid rgb(209, 209, 209);
 }
+
+div.navbar > .navbar-nav {
+	border: 2px solid #dddddd;
+	border-radius: 10px;
+}
+
+div.navbar > .navbar-nav > .active {
+	background-color: rgb(221, 221, 221);
+	border-radius: 10px;
+}

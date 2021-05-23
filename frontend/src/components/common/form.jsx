@@ -11,7 +11,16 @@ class Form extends Component {
         const schema = Joi.object(this.schema);
         const result = schema.validate(this.state.data, { abortEarly: false })
         let errors = {};
-        if ('confirm_password' in this.state.data) {
+        if ('new_password' in this.state.data) {
+            const { curr_password, new_password, confirm_password } = this.state.data;
+            if (curr_password === new_password) {
+                errors["new_password"] = "Current password and New password cannot be same";
+            }
+            else if (new_password !== confirm_password) {
+                errors["confirm_password"] = "Passwords do not match";
+            }
+        }
+        else if ('confirm_password' in this.state.data) {
             const { password, confirm_password } = this.state.data;
             if (password !== confirm_password) {
                 errors["confirm_password"] = "Passwords do not match";

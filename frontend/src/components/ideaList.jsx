@@ -16,14 +16,12 @@ class IdeaList extends Component {
         return (
             <div className="container">
                 <div className="row no-gutters">
-                    {this.showSpinner()}
-                    {this.props.ideas.map(
+                    {/* {this.showSpinner()} */}
+                    {this.props.ideas && this.props.ideas.map(
                         idea => <Idea
                             key={idea._id}
                             idea={idea}
                             user={this.props.user}
-                            onLike={() => this.props.onLike(idea)}
-                            onShare={() => this.props.onShare(idea)}
                         />
                     )}
                 </div>

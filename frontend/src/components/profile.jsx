@@ -1,82 +1,66 @@
 import React, { Component } from 'react';
-import http from '../services/httpService';
-import { apiEndPoint } from '../config.json';
 import IdeaList from './ideaList';
 import '../css/profile.css';
+import { NavLink, Route, Switch, Redirect } from 'react-router-dom';
+import ChangePass from './changePass';
 
 class Profile extends Component {
 
-    state = {
-        user: {
-            ideas: [],
-        },
-        likedIdeas:[]
-    }
-
-    async componentDidMount() {
-        const { data } = await http.get(`${apiEndPoint}/auth/me`);
-        const user = { ...data };
-        user.ideas.forEach(idea => {
-            const idx = user.ideas.indexOf(idea);
-            if (data) {
-                if (idea.likes.includes(user._id)) {
-                    user.ideas[idx] = { ...user.ideas[idx] };
-                    user.ideas[idx].liked = true;
-                }
-                user.ideas[idx].nLikes = idea.likes.length;
+    getLikedIdeas = (user, ideas) => {
+        let likedIdeas = [];
+        ideas.forEach(idea => {
+            if (idea.likes.includes(user._id)) {
+                likedIdeas.push(idea);
             }
         });
-
-        const likedIdeas = this.props.ideas.filter((idea) => { return idea.liked });
-        this.setState({ user, likedIdeas });
+        return likedIdeas;
     }
 
-    handleLike = async (idea) => {
-        const originalIdeas = this.state.user;
-        const user = { ...this.state.user };
-        const idx = user.ideas.indexOf(idea);
-        user.ideas[idx] = { ...user.ideas[idx] };
+    getUserIdeas = (user, ideas) => {
+        let userIdeas = [];
 
-        if (!idea.liked) {
-            user.ideas[idx].liked = true;
-            user.ideas[idx].nLikes += 1;
-            this.setState({ user });
-            try {
-                await http.put(`${apiEndPoint}/ideas/like`, idea);
-            } catch (ex) {
-                this.setState({ originalIdeas });
-            }
-        } else {
-            user.ideas[idx].liked = false;
-            user.ideas[idx].nLikes -= 1;
-            this.setState({ user });
-            try {
-                await http.put(`${apiEndPoint}/ideas/dislike`, idea);
-            } catch (ex) {
-                this.setState({ originalIdeas });
-            }
-        }
-    }
-  
-    handleShare = (idea) => {
-        console.log("Share button clicked", idea);
+        ideas.forEach(idea => {
+            if (idea.user === user._id)
+                userIdeas.push(idea);
+        });
+
+        return userIdeas;
     }
 
     render() {
-        const { user, likedIdeas } = this.state;
+        const { user, ideas } = this.props;
+        const userIdeas = this.getUserIdeas(user, ideas);
+        const likedIdeas = this.getLikedIdeas(user, ideas);
         return (
             <div className="row mt-3">
                 <div className="col-sm-3 info">
-                    <h4 className="text-center">{user.username && user.username.toUpperCase()}</h4>
-                    <p className="text-center">{user.email && user.email}</p>
+                    <h4 className="text-center">{user && user.username.toUpperCase()}</h4>
+                    <p className="text-center">{user && user.email}</p>
+
+                    <div className="navbar">
+                        <div className="navbar-nav text-center ml-4" style={{width: '80%'}}>
+                            <NavLink className="nav-item nav-link text-dark" to="/profile/yourideas">Your Ideas</NavLink>
+                            <NavLink className="nav-item nav-link text-dark" to="/profile/likedideas">Ideas You've Liked</NavLink>
+                            <NavLink  className="nav-item nav-link text-dark" to="/profile/changepassword">Change Password</NavLink>
+                        </div>
+                    </div>
+
                 </div>
                 <div className="col-sm-9">
-                    <h4>Your Ideas</h4>
+                    <Switch>
+                        <Route path="/profile/yourideas" render = { () =>
+                            <IdeaList ideas={userIdeas} user={user} />
+                        } ></Route>
+                        <Route path="/profile/likedideas" render = { () =>
+                            <IdeaList ideas={likedIdeas} user={user} />
+                        } ></Route>
+                        <Route path="/profile/changepassword" component={ChangePass}></Route>
+                        <Redirect from="/profile" exact to="/profile/yourideas" />
+                    </Switch>
+                    {/* <h4>Your Ideas</h4>
                     <IdeaList
-                        ideas={user.ideas}
+                        ideas={userIdeas}
                         user={user}
-                        onLike={this.handleLike}
-                        onShare={this.handleShare}
                     />
 
                     <hr className="mb-5" />
@@ -84,9 +68,7 @@ class Profile extends Component {
                     <IdeaList
                         ideas={likedIdeas}
                         user={user}
-                        onLike={() => { }}
-                        onShare={() => { }}
-                    />
+                    /> */}
                 </div>
             </div>
 

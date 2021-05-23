@@ -5,27 +5,26 @@ import "../css/fullIdea.css"
 
 
 class FullIdea extends Component {
-    state = {
-        idea : {}
+
+    getIdea = (props) =>{
+        const { _id: id } = props.match.params;
+        const { ideas } = props;
+        return ideas.find(idea => { return idea._id === id });
     }
-    
-    async componentDidMount() {
-        const idea = await getIdea(this.props.match.params._id);
-        this.setState({ idea });
-    }
+
     render() {
-        const { idea } = this.state;
+        const idea = this.getIdea(this.props);
         return (
             <div className="card m-auto p-5 w-75 full-card bg-dark">
-                <h4 className="display-4 text-light">{idea.title && idea.title.toUpperCase()}</h4>
+                <h4 className="display-4 text-light">{idea && idea.title && idea.title.toUpperCase()}</h4>
                 <hr/>
                 <p className="card-body text-light">
-                    { idea.description }
+                    {idea && idea.description && idea.description }
                 </p>
                 <hr/>
                 <div>
                     <Like liked={true} onLike={() => {}} />
-                    <small className="ml-1 text-light">{idea.nLikes}</small>
+                    <small className="ml-1 text-light">{idea && idea.nLikes && idea.nLikes}</small>
                 </div>
             </div>
          );
