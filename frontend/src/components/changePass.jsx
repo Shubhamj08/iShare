@@ -42,7 +42,7 @@ class ChangePass extends Form {
                     style={{boxShadow: '4px 4px 16px -8px #888888'}}
                     onSubmit={this.handleSubmit}
                 >
-                    <h4 className="text-center">Signup</h4>
+                    <h4 className="text-center">Change Password</h4>
                     {this.renderInput("curr_password", "Current Password", "password")}
                     {this.renderInput("new_password", "New Password", "password")}
                     {this.renderInput("confirm_password", "Confirm New Password", "password")}
