@@ -17,7 +17,7 @@ class Signup extends Form {
     };
 
     schema = {
-        username: Joi.string().alphanum().required().label("Username"),
+        username: Joi.string().required().min(4).max(20).label("Username"),
         email: Joi.string().email().required().label("Email"),
         password: Joi.string().min(8).required().label("Password"),
         confirm_password: Joi.string().min(8).required().label("Passwords")
@@ -42,7 +42,7 @@ class Signup extends Form {
             <div className="container mb-5">
                 <form
                     className="form-group w-50 rounded border p-5 mx-auto"
-                    style={{boxShadow: '4px 4px 16px -8px #888888'}}
+                    style={{boxShadow: '2px 2px 8px -4px #888888'}}
                     onSubmit={this.handleSubmit}
                 >
                     <h4 className="text-center">Signup</h4>

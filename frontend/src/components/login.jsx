@@ -40,7 +40,7 @@ class Login extends Form {
             <div className="container">
                 <form
                     className="form-group w-50 rounded border p-5 mx-auto"
-                    style={{boxShadow: '4px 4px 16px -8px #888888'}}
+                    style={{boxShadow: '2px 2px 8px -4px #888888'}}
                     onSubmit={this.handleSubmit}
                 >
                     <h4 className="text-center">Login</h4>

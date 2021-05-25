@@ -57,8 +57,11 @@ class Idea extends Component {
         return (
             <div className="col-sm-6">
                 <div className="card m-3">
-                    <div className="card-header pb-0 text-left">
+                    <div className="card-header pb-0 d-flex justify-content-between">
                         <Link to={`/ideas/${idea._id}`}>{idea.title.toUpperCase()}</Link>
+                        {this.props.user && this.props.user._id === author._id &&
+                            <Link to={`/post/${idea._id}`}><i className="fa fa-edit"></i></Link>
+                        }
                     </div>
                     <div className="card-body text-justify">
                         <div className="card-text">{idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>

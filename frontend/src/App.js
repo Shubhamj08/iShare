@@ -52,6 +52,11 @@ class App extends Component {
             <Route path="/user/:_id" render={(props) =>
               <User ideas={this.state.ideas} {...props} />
             }></Route>
+            <Route path="/post/:_id" render={(props) => <PostIdea
+              user={this.state.user}
+              ideas={this.state.ideas}
+              {...props}
+            />}></Route>
             <Route path="/post" render={() => <PostIdea
               user = {this.state.user}
             />}></Route>

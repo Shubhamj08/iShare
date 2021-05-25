@@ -14,8 +14,32 @@ class PostIdea extends Form {
     }
 
     schema = {
+        id: Joi.string(),
         title: Joi.string().max(50).required(),
         description: Joi.string().min(20).required()
+    }
+
+    componentDidMount() {
+        if (!this.props.match)
+            return;
+        
+        const id = this.props.match.params._id
+        const idea = this.getIdeaToEdit(id)
+        if (!idea)
+            return this.props.history.replace("/not-found");
+        
+        const data = {
+            id: idea._id,
+            title: idea.title,
+            description: idea.description
+        }
+        this.setState({ data });
+    }
+
+    getIdeaToEdit = (id) => {
+        const { ideas } = this.props;
+        const idea = ideas.find(idea => { return idea._id === id });
+        return idea;
     }
 
     doSubmit = async () => {
@@ -35,9 +59,10 @@ class PostIdea extends Form {
         }
     }
 
-    render() { 
+    render() {
         return (
             <div className="container mt-5">
+                {this.props.match && this.getIdeaToEdit()}
                 {!this.props.user && <h4 className="display-4 text-center">
                     You need to login in order to post!
                 </h4>}

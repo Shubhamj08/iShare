@@ -47,6 +47,20 @@ router.put("/user/changepass", auth, async (req, res) => {
   res.send(await user.save());
 });
 
+router.put("/user/changename", auth, async (req, res) => {
+  const filter = { email: req.body.email };
+  const update = { username: req.body.username };
+  const user = await User.findOneAndUpdate(filter, update, {
+    useFindAndModify: false,
+    new: true
+  }, (err, docs) => {
+    if (err)
+      return res.status(500).send(err);
+  });
+
+  return res.send(user);
+});
+
 // route handler to register a user
 router.post("/", async (req, res) => {
   const result = userSchema.validate(req.body);

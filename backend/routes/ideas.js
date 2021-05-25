@@ -65,13 +65,27 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", auth, async (req, res) => {
-  const result = ideaPostSchema.validate(req.body);
+  const result = ideaPostSchema.validate({title: req.body.title, description: req.body.description});
   if (result.error) {
     res.status(400).send(result.error.details[0].message);
     return;
   }
-  const idea = await addToDb(req, res);
-  res.send(idea);
+
+  if (req.body.id) {
+    const update = { title: req.body.title, description: req.body.description };
+    const idea = await Idea.findByIdAndUpdate(req.body.id, update, {
+      useFindAndModify: false,
+      new: true
+    }, (err, docs) => {
+      if (err)
+        return res.status(500).send(err);
+    });
+
+    return res.send(idea);
+  } else {
+    const idea = await addToDb(req, res);
+    return res.send(idea);
+  }
 });
 
 module.exports = router;

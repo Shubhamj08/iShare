@@ -1,33 +1,32 @@
 import React from 'react';
 import { toast } from 'react-toastify';
-import { getCurrentUser } from '../services/authService';
-import { changePassword } from '../services/userService';
+import { getCurrentUser, setCurrentUser } from '../services/authService';
+import { changeUsername } from '../services/userService';
 import Form from './common/form';
 const Joi = require('joi-browser');
 
-class ChangePass extends Form {
+class ChangeName extends Form {
     state = {
         data : {
-            curr_password:"", new_password: "", confirm_password: ""
+            new_username: "",
         },
         errors: {}
     };
 
     schema = {
-        curr_password: Joi.string().min(8).required().label("Current Password"),
-        new_password: Joi.string().min(8).required().label("New Password"),
-        confirm_password: Joi.string().min(8).required().label("Confirm New Password")
+        new_username: Joi.string().required().min(4).max(20).label("Username")
     };
 
     doSubmit = async (data) => {
         try {
             let user = getCurrentUser();
-            user = await changePassword(user.email, data.curr_password, data.new_password);
-            toast.success("Password Changed");
+            user = await changeUsername(user.email, data.new_username);
+            toast.success("Username Updated. Click refresh to show changes..");
+            setCurrentUser(user);
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 const errors = { ...this.state.errors };
-                errors.curr_password = ex.response.data;
+                errors.new_username = ex.response.data;
                 this.setState({ errors });
             }
         }
@@ -42,10 +41,8 @@ class ChangePass extends Form {
                     style={{boxShadow: '2px 2px 8px -4px #888888'}}
                     onSubmit={this.handleSubmit}
                 >
-                    <h4 className="text-center">Change Password</h4>
-                    {this.renderInput("curr_password", "Current Password", "password")}
-                    {this.renderInput("new_password", "New Password", "password")}
-                    {this.renderInput("confirm_password", "Confirm New Password", "password")}
+                    <h4 className="text-center">Update Username</h4>
+                    {this.renderInput("new_username", "New Username", "text")}
                     {this.renderButton("Submit")}
                 </form>
             </div>
@@ -53,4 +50,4 @@ class ChangePass extends Form {
     }
 }
  
-export default ChangePass;
+export default ChangeName;

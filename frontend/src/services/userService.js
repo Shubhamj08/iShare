@@ -20,3 +20,8 @@ export async function changePassword(email, curr_password, new_password) {
     const data = await http.put(`${endPoint}/user/changepass`, { email, curr_password, new_password });
     return data;
 }
+
+export async function changeUsername(email, username) {
+    const { data: user } = await http.put(`${endPoint}/user/changename`, { email, username });
+    return user;
+}

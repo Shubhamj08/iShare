@@ -3,6 +3,7 @@ import IdeaList from './ideaList';
 import '../css/profile.css';
 import { NavLink, Route, Switch, Redirect } from 'react-router-dom';
 import ChangePass from './changePass';
+import ChangeName from './changeName';
 
 class Profile extends Component {
 
@@ -41,7 +42,8 @@ class Profile extends Component {
                         <div className="navbar-nav text-center ml-4" style={{width: '80%'}}>
                             <NavLink className="nav-item nav-link text-dark" to="/profile/yourideas">Your Ideas</NavLink>
                             <NavLink className="nav-item nav-link text-dark" to="/profile/likedideas">Ideas You've Liked</NavLink>
-                            <NavLink  className="nav-item nav-link text-dark" to="/profile/changepassword">Change Password</NavLink>
+                            <NavLink className="nav-item nav-link text-dark" to="/profile/changepassword">Change Password</NavLink>
+                            <NavLink  className="nav-item nav-link text-dark" to="/profile/changename">Change Username</NavLink>
                         </div>
                     </div>
 
@@ -55,6 +57,7 @@ class Profile extends Component {
                             <IdeaList ideas={likedIdeas} user={user} />
                         } ></Route>
                         <Route path="/profile/changepassword" component={ChangePass}></Route>
+                        <Route path="/profile/changename" component={ChangeName}></Route>
                         <Redirect from="/profile" exact to="/profile/yourideas" />
                     </Switch>
                     {/* <h4>Your Ideas</h4>
