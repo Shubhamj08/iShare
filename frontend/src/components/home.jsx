@@ -40,7 +40,7 @@ const Home = (props) => {
                 </Link>
                 <Link to="post" style={{textDecoration: "none"}} className="second-col text-dark pb-5 col-lg-6">
                     <div className="card mx-auto post-card">
-                        <img src="/post-image.PNG" style={{maxHeight: "100%"}} alt="postImage" />
+                        <img src="/post-image.png" style={{maxHeight: "100%"}} alt="postImage" />
                     </div>
                     <div className="text-center mt-3 px-5"><span className="py-2 px-3 goto-post">Post an Idea</span></div>
                 </Link>
