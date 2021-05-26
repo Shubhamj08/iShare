@@ -24,6 +24,7 @@ class ChangePass extends Form {
             let user = getCurrentUser();
             user = await changePassword(user.email, data.curr_password, data.new_password);
             toast.success("Password Changed");
+            this.setState({ data: { curr_password: "", new_password: "", confirm_password: "" } });
         } catch (ex) {
             if (ex.response && ex.response.status === 400) {
                 const errors = { ...this.state.errors };
@@ -36,7 +37,7 @@ class ChangePass extends Form {
     render() {
         if (!getCurrentUser()) return <h1>You Need To Login!!</h1>;
         return ( 
-            <div className="container mb-5">
+            <div className="container mt-5">
                 <form
                     className="form-group w-50 rounded border p-5 mx-auto"
                     style={{boxShadow: '2px 2px 8px -4px #888888'}}

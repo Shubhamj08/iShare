@@ -34,12 +34,12 @@ class Profile extends Component {
         const likedIdeas = this.getLikedIdeas(user, ideas);
         return (
             <div className="row mt-3">
-                <div className="col-sm-3 info">
-                    <h4 className="text-center">{user && user.username.toUpperCase()}</h4>
+                <div className="col-lg-3 info">
+                    <h4 className="text-center">{user && user.username}</h4>
                     <p className="text-center">{user && user.email}</p>
 
                     <div className="navbar">
-                        <div className="navbar-nav text-center ml-4" style={{width: '80%'}}>
+                        <div className="navbar-nav text-center mb-3" style={{width: '100%'}}>
                             <NavLink className="nav-item nav-link text-dark" to="/profile/yourideas">Your Ideas</NavLink>
                             <NavLink className="nav-item nav-link text-dark" to="/profile/likedideas">Ideas You've Liked</NavLink>
                             <NavLink className="nav-item nav-link text-dark" to="/profile/changepassword">Change Password</NavLink>
@@ -48,7 +48,7 @@ class Profile extends Component {
                     </div>
 
                 </div>
-                <div className="col-sm-9">
+                <div className="col-lg-9">
                     <Switch>
                         <Route path="/profile/yourideas" render = { () =>
                             <IdeaList ideas={userIdeas} user={user} />

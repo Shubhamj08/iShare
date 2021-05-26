@@ -1,6 +1,7 @@
 nav.navbar {
 	box-shadow: 4px 4px 16px -8px #444444;
 	font-family: "Montserrat", sans-serif;
+	font-weight: 500;
 }
 
 .navbar-brand {
@@ -13,8 +14,6 @@ nav.navbar {
 	height: auto;
 }
 
-@media only screen and (max-width: 600px) {
-	nav.navbar {
-		margin-bottom: 20px !important;
-	}
+.fa-refresh {
+	cursor: pointer;
 }

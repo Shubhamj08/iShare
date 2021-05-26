@@ -7,7 +7,7 @@ import Signup from './signup';
 class Auth extends Component {
     render() { 
         return (
-        <div className="container">
+        <div className="container mt-5">
             <AuthSidebar />
             <Switch>
                 <Route path="/auth/login" component={Login}></Route>

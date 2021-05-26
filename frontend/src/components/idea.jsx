@@ -6,6 +6,7 @@ import Like from './common/like';
 import Share from './common/share';
 import { toast } from 'react-toastify';
 import { getAuthor } from '../services/userService';
+import { getCurrentUser } from './../services/authService';
 
 
 class Idea extends Component {
@@ -53,18 +54,19 @@ class Idea extends Component {
     }
 
     render() {
-        var { author, idea } = this.state;
+        const { author, idea } = this.state;
+        const currUser = getCurrentUser();
         return (
-            <div className="col-sm-6">
-                <div className="card m-3">
+            <div className="col-lg-6">
+                <div className="card card-idea m-3">
                     <div className="card-header pb-0 d-flex justify-content-between">
                         <Link to={`/ideas/${idea._id}`}>{idea.title.toUpperCase()}</Link>
-                        {this.props.user && this.props.user._id === author._id &&
+                        {currUser && currUser._id === author._id &&
                             <Link to={`/post/${idea._id}`}><i className="fa fa-edit"></i></Link>
                         }
                     </div>
-                    <div className="card-body text-justify">
-                        <div className="card-text">{idea.description.length < 200? idea.description: `${idea.description.slice(0, 250)}...` }</div>
+                    <div className="card-body">
+                        <div className="card-text">{idea.description}</div>
                     </div>
                     <div className="card-footer d-flex justify-content-between">
                         <Link to={`/user/${idea.user}`}><small>{author.username}</small></Link>

@@ -3,9 +3,13 @@
 	font-family: "Nunito", "sans-serif";
 }
 
-@media only screen and (max-width: 600px) {
+.full-card {
+	height: 100%;
+}
+
+@media only screen and (max-width: 960px) {
 	div.full-card {
-		width: 100% !important;
+		width: 90% !important;
 		padding: 1.6em !important;
 	}
 

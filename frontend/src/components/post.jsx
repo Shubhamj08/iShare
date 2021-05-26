@@ -50,7 +50,7 @@ class PostIdea extends Form {
         else {
             try {
                 await http.post(`${apiEndPoint}/ideas`, data);
-                window.location = '/';
+                window.location = '/ideas';
             } catch (ex) {
                 if (ex.response && ex.response.status === 400) {
                     console.log(ex);

@@ -12,7 +12,7 @@ const Navbar = (props) => {
 
     return (
         <nav
-            className="navbar navbar-expand-lg navbar-light bg-white sticky-top mb-5"
+            className="navbar navbar-expand-lg navbar-light bg-white sticky-top"
         >
             <Link className="navbar-brand p-0" to="/"><img className='logo img-fluid' src={logo} alt={'IShare'}></img></Link>
             <button className="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded={!isNavCollapsed ? 'true' : 'false'} aria-label="Toggle navigation" onClick={handleNavCollapse}>
@@ -28,8 +28,9 @@ const Navbar = (props) => {
                         <NavLink className="nav-item nav-link" to="/profile">{ props.user.username }</NavLink>
                             <NavLink className="nav-item nav-link" to="/logout"><small>LOGOUT</small></NavLink>
                         </React.Fragment>}
-                    <i className= "fa fa-refresh fa-lg mx-2" onClick={handleRefresh} style={{paddingTop:"4%", cursor:"pointer"}} area-hidden="true"></i>
+                    
                 </div>
+                <i className= "fa fa-refresh fa-lg mx-2" onClick={handleRefresh} area-hidden="true"></i>
             </div>
         </nav>
      );

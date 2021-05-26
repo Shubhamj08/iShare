@@ -35,7 +35,7 @@ class ChangeName extends Form {
     render() {
         if (!getCurrentUser()) return <h1>You Need To Login!!</h1>;
         return ( 
-            <div className="container mb-5">
+            <div className="container mt-5">
                 <form
                     className="form-group w-50 rounded border p-5 mx-auto"
                     style={{boxShadow: '2px 2px 8px -4px #888888'}}

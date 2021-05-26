@@ -37,12 +37,11 @@ class User extends Component {
         const userIdeas = this.getUserIdeas(user, ideas);
         return (
             <div className="row mt-3">
-                <div className="col-sm-3 info">
-                    <h4 className="text-center">{user && user.username.toUpperCase()}</h4>
+                <div className="col-lg-3 info">
+                    <h4 className="text-center">{user && user.username}</h4>
                     <p className="text-center">{user && user.email}</p>
                 </div>
-                <div className="col-sm-9">
-                    <h4>{`${user && user.username}'s Ideas`}</h4>
+                <div className="col-lg-9">
                     <IdeaList
                         ideas={userIdeas}
                         user={user}

@@ -11,7 +11,6 @@ import Logout from './components/logout';
 import Profile from './components/profile';
 import Home from './components/home';
 import FullIdea from './components/fullIdea';
-import http from './services/httpService';
 import { getCurrentUser } from './services/authService';
 import { getIdeas } from './services/ideaService';
 import "react-toastify/dist/ReactToastify.css";
@@ -41,7 +40,7 @@ class App extends Component {
 
   render(){
     return (
-      <div className="App">
+      <div className="App bg-white">
         <ToastContainer/>
         <Navbar user={this.state.user} />
         <main className="container-fluid">
@@ -67,10 +66,12 @@ class App extends Component {
               ideas={this.state.ideas}/>}></Route>
             <Route path="/ideas" render={() => <IdeaList
               ideas={this.state.ideas}
-              user={ this.state.user }/>}></Route>
+              user={this.state.user} />}></Route>
+            <Route path="/home" render={() =>
+              <Home user={ this.state.user }/>
+            }></Route>
             <Route path="/not-found" component={NotFound}></Route>
-            <Redirect from="/" exact to="/ideas" />
-            {/* <Route path="/" exact component={Home}></Route> */}
+            <Redirect from="/" exact to="/home" />
             <Redirect to="/not-found" />
           </Switch>
         </main>
