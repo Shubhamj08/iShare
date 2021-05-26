@@ -1,0 +1,23 @@
+html 
+    head
+        title="ishare backend apis"
+    body(style="padding:100px; background-color: #4158D0; background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); color: #f1f1f1;")
+        h2="/ideas"
+        h3
+            ul(style="margin-left:25px; padding:5px;") 
+                li(style="margin: 10px 0;")="get, post => /"
+                li(style="margin: 10px 0;")="like idea => /like"
+                li(style="margin: 10px 0;")="unlike idea => /dislike"
+        h2="/users"
+        h3
+            ul(style="margin-left:25px; padding:5px;") 
+                li(style="margin: 10px 0;")="register => /"
+                li(style="margin: 10px 0;")="get user by id => /user"
+                li(style="margin: 10px 0;")="change password => /user/changepass"
+                li(style="margin: 10px 0;")="change username => /user/changename"
+        h2="/auth"
+        h3
+            ul(style="margin-left:25px; padding:5px;") 
+                li(style="margin: 10px 0;")="login => /"
+                li(style="margin: 10px 0;")="get current user => /me"
+
